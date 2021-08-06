@@ -1,0 +1,29 @@
+{% extends 'dishes/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Dishes List</h2>
+            <form method="get">
+                <button type="submit" name="order" value="esc">newest</button>
+                &nbsp;|&nbsp;
+                <button type="submit" name="order" value="desc">oldest</button>
+            </form>
+            <form method="get">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
+        {% for dish in dishes %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex">
+                        <a href="{% url 'dishes:single_dish' dish.pk %}">
+                            <h3>{{ dish.title }}</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

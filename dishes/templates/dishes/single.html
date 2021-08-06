@@ -1,0 +1,29 @@
+{% extends 'dishes/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>{{ dish.title }}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center align-items-center flex-column">
+            <form method="post" class="p-4">
+                {% csrf_token %}
+                {{ form.errors }}
+                <table class="p-2">
+                    {{ form.as_table }}
+                </table>
+                <div class="col-12-md d-flex justify-content-center pt-3">
+                    <button class="btn btn-primary" type="submit">Order</button>
+                </div>
+            </form>
+            {% if not_signed_in %}
+                <p>
+                    You must sign in first!
+                </p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
