@@ -1,16 +1,30 @@
 {% extends 'dishes/base.html' %}
+{% load static %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12">
             <h2>Dishes List</h2>
-            <form method="get">
-                <button type="submit" name="order" value="esc">newest</button>
+            <form method="get" class="order-form">
+                <button class="btn btn-secondary" type="submit" name="order_by" value="created_at">
+                    <img style="width: 10px;" src="{% static 'dishes/long-arrow-alt-down-solid.svg' %}" alt="desc-sort" width="20">
+                </button>
                 &nbsp;|&nbsp;
-                <button type="submit" name="order" value="desc">oldest</button>
+                <button class="btn btn-secondary" type="submit" name="order_by" value="-created_at">
+                    <img style="width: 10px;" src="{% static 'dishes/long-arrow-alt-up-solid.svg' %}" alt="esc-sort" width="20">
+                </button>
             </form>
             <form method="get">
-                <input type="text" name="q" placeholder="Search" />
+                <label>
+                    <input
+                        type="text"
+                        name="q"
+                        placeholder="Search"
+                        {% if request.GET.q %}
+                            value="{{ request.GET.q }}"
+                        {% endif %}
+                    />
+                </label>
                 <input type="submit" value="Search" />
             </form>
         </div>

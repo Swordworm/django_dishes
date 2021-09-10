@@ -1,6 +1,22 @@
 body {
-    background-color: #ffc9ab;
+    background-image: url("background.jpg");
 }
+
 header {
-    padding-top: 40px;
+    padding-top: 10px;
+}
+
+.order-form {
+    padding: 5px 0;
+}
+
+.success-text-wrapper {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 10px 20px;
+}
+
+.success-text-wrapper h3,
+.success-text-wrapper p {
+    color: #fff;
 }

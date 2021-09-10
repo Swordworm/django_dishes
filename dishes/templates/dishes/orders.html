@@ -1,0 +1,41 @@
+{% extends 'dishes/base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ request.GET.next }}">Back</a>
+            <a href="/">Home</a>
+            <ol>
+                {% if orders %}
+                    {% for item in orders %}
+                        <li>
+                            {{ item.order.dish }}
+                            <ul>
+                                {% for ingredient in item.ingredients %}
+                                    <li>{{ ingredient.ingredient.name }}: {{ ingredient.quantity }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                    {% if is_paginated %}
+                        <div class="pagination d-flex justify-content-center">
+                            <span class="page-links">
+                                {% if page_obj.has_previous %}
+                                    <a href="/orders?page={{ page_obj.previous_page_number }}"><<</a>
+                                {% endif %}
+                                <span class="page-current">
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                                </span>
+                                {% if page_obj.has_next %}
+                                    <a href="/orders?page={{ page_obj.next_page_number }}">>></a>
+                                {% endif %}
+                            </span>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <h3>Your cart is empty</h3>
+                {% endif %}
+            </ol>
+        </div>
+    </div>
+
+{% endblock %}

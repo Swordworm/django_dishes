@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Ingredient, Dish
+from .models import Ingredient, Dish, Order
 
 
 class DishIngredientInline(
@@ -12,11 +12,12 @@ class DishIngredientInline(
 class DishAdmin(
     admin.ModelAdmin
 ):
-    list_display = ('title', 'created')
+    list_display = ('title', 'created_at')
     inlines = [
         DishIngredientInline
     ]
 
 
 admin.site.register(Ingredient)
+admin.site.register(Order)
 admin.site.register(Dish, DishAdmin)
