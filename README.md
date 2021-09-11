@@ -10,5 +10,5 @@ Installation:
 8) Open your browser: http://127.0.0.1:8000/
 
 Admin panel:
-username: admin
-password: 123
+- username: admin
+- password: 123
